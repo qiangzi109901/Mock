@@ -1,0 +1,221 @@
+* {
+  font-size: 14px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+input,
+textarea,
+select {
+  outline: none;
+}
+
+select {
+  -webkit-appearance: none;
+  border: 1px solid #D4D3D4;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 50px #f4f5f9 inset;
+}
+
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 50px #f4f5f9 inset;
+}
+
+.minput {
+  width: 200px;
+  height: 30px;
+  border: 1px solid #f4f5f9;
+  padding-left: 5px;
+  font-size: 12px;
+  border-radius: 2px;
+  margin-right: 20px;
+  background: #f4f5f9;
+  transition: 0.3s ease-in;
+  font-family: Monaco, Menlo,Consolas,"helvetica neue", "Microsoft YaHei", arial, sans-serif;
+}
+.minput:focus {
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.3);
+}
+
+.mtextarea {
+  display: block;
+  width: 800px;
+  border: 1px solid #FFFFFF;
+  margin-left: 80px;
+  position: relative;
+  top: -20px;
+  height: 200px;
+  padding: 10px;
+  font-family: Consolas, "Microsoft YaHei";
+}
+
+.form_line {
+  margin-bottom: 30px;
+}
+.form_line label {
+  display: inline-block;
+  width: 120px;
+  color: #999;
+}
+
+.mbtn {
+  display: inline-block;
+  width: 120px;
+  text-align: center;
+  line-height: 32px;
+  background-color: #2ea5ff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.mbtn.sm {
+  width: 60px;
+  line-height: 26px;
+}
+.mbtn.cdefault {
+  background-color: #EEE;
+  color: #999;
+}
+.mbtn.cdanger {
+  background-color: #C40000;
+}
+
+.hidden {
+  display: none;
+}
+
+#blur_bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+}
+
+#header {
+  height: 60px;
+  margin-bottom: 50px;
+}
+#header #header_content {
+  width: 1200px;
+  margin: 0 auto;
+  min-width: 1200px;
+  padding-top: 15px;
+}
+#header #header_content #mlist {
+  width: 160px;
+  height: 26px;
+}
+
+#container {
+  width: 1200px;
+  margin: 0 auto;
+  min-width: 1200px;
+}
+#container #tt {
+  width: 500px;
+  min-height: 500px;
+  float: left;
+  background: #f4f5f9;
+}
+#container .mtable {
+  border-collapse: collapse;
+  width: 500px;
+  background: #f4f5f9;
+}
+#container .mtable tr {
+  padding: 5px 10px;
+  height: 40px;
+}
+#container .mtable tr th {
+  color: #999;
+  padding-left: 10px;
+  text-align: left;
+}
+#container .mtable tr td {
+  height: 40px;
+  padding-left: 10px;
+  position: relative;
+}
+#container .mtable tr td:nth-of-type(3) input {
+  color: #999;
+}
+#container .mtable tr td input {
+  display: inline-block;
+  margin: 0 auto;
+  width: 90%;
+}
+#container .mtable tr td select {
+  display: inline-block;
+  width: 90%;
+}
+#container .mtable tr td #plus {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  color: #999;
+  font-weight: 600;
+}
+#container .mtable tr td .mclose {
+  font-size: 12px;
+  position: absolute;
+  right: 2px;
+  bottom: 15px;
+  cursor: pointer;
+  color: #999;
+  display: none;
+}
+#container .mtable tr:hover .mclose {
+  display: inline-block;
+}
+#container #btn_area {
+  float: left;
+  margin-left: 20px;
+}
+#container #btn_area input {
+  width: 120px;
+}
+#container #btn_area a, #container #btn_area div {
+  margin-bottom: 10px;
+}
+#container #btn_area #catalog, #container #btn_area #number {
+  width: 120px;
+}
+#container #result_area {
+  float: left;
+  background: #f4f5f9;
+  width: 500px;
+  height: 500px;
+  margin-left: 20px;
+  position: relative;
+}
+#container #result_area #copy {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: inline-block;
+  padding: 3px 5px;
+  background: #45d14a;
+  color: #FAFAFA;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#lForm {
+  width: 120px;
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>造数据</title>
+    <script type="text/javascript" src="lib/require.js"></script>
+    <script type="text/javascript" src="lib/require_config.js"></script>
+    <link rel="stylesheet" href="lib/select2/select2.min.css">
+    <link rel="stylesheet" href="lib/select2/mini.normal.css">
+    <link rel="stylesheet" href="lib/plugin/frame/css/mframe.css">
+    <link href="lib/prism/prism.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+</head>
+
+
+<body>
+	<div id="blur_bg"></div>
+	<div id="header">
+		<div id="header_content">
+			历史数据:&nbsp;&nbsp;<select class="mselect select2" id="mlist" mselect-default-val="" mselect-default-msg="请选择"></select>
+
+			<a id="bAdd" class="mbtn sm" >新增</a>
+			<a id="bDelete" class="mbtn sm cdanger" >删除</a>
+			<a id="bBackup" class="mbtn sm" >备份</a>
+			<a id="bRedo" class="mbtn sm" >还原</a>
+		</div>
+	</div>
+    <div id="container">
+    	<div id="tt">
+    		 <table class="mtable" border="1" bordercolor="#ddd">
+	            <thead>
+	                <tr>
+	                    <th width="100">KEY</th>
+	                    <th width="120">TYPE</th>
+	                    <th width="300">EXTRA</th>
+	                </tr>
+	            </thead>
+	            <tbody id="mbody">
+	                <tr>
+	                    <td>
+	                        <input type="text" class="minput" />
+	                    </td>
+	                    <td>
+	                        <select class="mselect select2 mtype" mselect-default-val="" mselect-default-msg="请选择"></select>
+	                    </td>
+	                    <td>
+	                        <input type="text" class="minput" />
+	                        <span class="mclose">×</span>
+	                    </td>
+	                </tr>
+	            </tbody>
+	            <tfoot>
+	                <tr>
+	                    <td colspan="3">
+	                        <span id="plus">+</span>
+	                    </td>
+	                </tr>
+	            </tfoot>
+	        </table>
+    	</div>
+        <div id="btn_area">
+        	<div>
+        		<input type="text" id="mname" class="minput" placeholder="请输入名称"/>
+        	</div>
+        	<a class="mbtn" id="render_btn">渲染</a>
+        	<div>
+        		<select class="mselect select2" id="catalog" mselect-default-val="" mselect-default-msg="请选择"></select>
+        	</div>
+        	<div id="dnumber" class="hidden">
+        		<select class="mselect select2" id="number" mselect-default-val="" mselect-default-msg="请选择"></select>
+        	</div>
+        	<div>
+        		<input type="text" class="minput hidden" id="mtable" placeholder="TABLE NAME"/>
+        	</div>
+        	
+        </div>
+        <div id="result_area">
+        	<a id="copy" data-clipboard-target="#code">COPY</a>
+        	<pre><code id="code" class="language-json"></code></pre>
+        </div>
+    </div>
+    <script type="text/text" id="temp_item">
+        <tr>
+            <td>
+                <input type="text" class="minput" />
+            </td>
+            <td>
+                <select class="mselect select2 mtype" mselect-default-val="" mselect-default-msg="请选择"></select>
+            </td>
+            <td>
+                <input type="text" class="minput" />
+                <span class="mclose">×</span>
+            </td>
+        </tr>
+    </script>
+
+    <script type="text/text" id="temp_backup">
+    	[[each lists as list index]]
+    		<tr>
+	            <td>
+	                <input type="text" class="minput" value="[[list.key]]"/>
+	            </td>
+	            <td>
+	                <select class="mselect select2 mtype" id="choose_[[index]]" mselect-value="[[list.type]]" mselect-default-val="" mselect-default-msg="请选择"></select>
+	            </td>
+	            <td>
+	                <input type="text" class="minput" value="[[list.extra]]"/>
+	                <span class="mclose">×</span>
+	            </td>
+	        </tr>
+    	[[/each]]
+        
+    </script>
+
+
+     <script type="text/text" id="temp_obj">
+{
+	[[each items as item index]]
+	"[[item.key]]" : "[[item.value]]"[[items | comma:index]]
+	[[/each]]
+}
+    </script>
+    <script type="text/text" id="temp_obj_array">
+[
+	[[each lists as items index]]
+	{
+		[[each items as item index]]
+		"[[item.key]]" : "[[item.value]]"[[items | comma:index]]
+		[[/each]]
+	}[[lists | comma:index]]
+	[[/each]]
+
+]
+    </script>
+
+    <script type="text/text" id="temp_obj_many_zip">
+[[each lists as items index]]
+{
+	[[each items as item index]]
+	"[[item.key]]" : "[[item.value]]"[[items | comma:index]]
+	[[/each]]
+}[[lists | comma:index]]
+[[/each]]
+    </script>
+   
+    <script type="text/text" id="temp_insert_sql">
+	insert into 
+		table(
+			[[each items as item index]]
+				[[item.key]][[items | comma:index]]
+			[[/each]]
+		)
+		value(
+			[[each items as item index]]
+				[[item.value]][[items | comma:index]]
+			[[/each]]
+		);
+    </script>
+    <script type="text/text" id="temp_batch_insert">
+    [[each lists as items index]]
+	insert into 
+		[[table]](
+			[[each items as item index]]
+				[[item.key]][[items | comma:index]]
+			[[/each]]
+		)
+		value(
+			[[each items as item index]]
+				'[[item.value]]'[[items | comma:index]]
+			[[/each]]
+			);
+	[[/each]]
+    </script>
+
+
+
+	<script type="text/html" id="temp_manage">
+
+	</script>
+
+
+	<div id="lForm">
+	
+		<div class="form_line">
+			<label for="">姓名</label>
+			<input type="text" class="minput" name="name">
+		</div>
+
+		<div class="form_line">
+			<label for="">邮箱</label>
+			<input type="text" class="minput" name="email">
+		</div>
+
+	</div>
+
+
+
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>

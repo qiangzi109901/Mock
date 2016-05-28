@@ -1,0 +1,158 @@
+
+*{
+	font-size: 14px;
+}
+body{
+	margin:0;
+	padding:0;
+}
+
+@import "form";
+
+.hidden{
+	display: none;
+}
+
+
+#blur_bg{
+	position: fixed;
+	top : 0;
+	left: 0;
+	width:100%;
+	height: 100%;
+	z-index: 2;
+	background: rgba(255,255,255,0.9);
+	-webkit-filter: blur(10px); 
+       -moz-filter: blur(10px);
+        -ms-filter: blur(10px);   
+            filter: blur(10px); 
+
+}
+#header{
+	height:60px;
+	margin-bottom: 50px;
+
+	#header_content{
+		width:1200px;
+		margin:0 auto;
+		min-width: 1200px;
+		padding-top: 15px;
+		#mlist{
+			width:160px;
+			height: 26px;
+		}
+	}
+}
+#container{
+	width:1200px;
+	margin:0 auto;
+	min-width: 1200px;
+
+	
+	#tt{
+		width:500px;
+		min-height: 500px;
+		float: left;
+		background: #f4f5f9;
+	}
+	.mtable{
+		border-collapse: collapse;
+		width:500px;
+		background: #f4f5f9;
+		tr{
+			padding:5px 10px;
+			height: 40px;
+			th{
+				color:#999;
+				padding-left: 10px;
+				text-align: left;
+			}
+
+			td{
+				height: 40px;
+				padding-left: 10px;
+				position: relative;
+				&:nth-of-type(3){
+					input{
+						color: #999;
+					}
+				}
+				input{
+					display: inline-block;
+					margin:0 auto;
+					width:90%;
+
+				}
+				select{
+					display: inline-block;
+					width:90%;
+				}
+				#plus{
+					display: block;
+					width:100%;
+					height: 100%;
+					text-align: center;
+					line-height: 40px;
+					cursor: pointer;
+					color: #999;
+					font-weight: 600;
+				}
+
+				.mclose{
+					font-size:12px;
+					position: absolute;
+					right:2px;
+					bottom:15px;
+					cursor: pointer;
+					color:#999;
+					display:none;
+				}
+			}
+			&:hover .mclose{
+				display: inline-block;
+			}
+		}
+	}
+
+	#btn_area{
+		float:left;
+		margin-left: 20px;
+		input{
+			width:120px;
+		}
+		a,div{
+			margin-bottom: 10px;
+		}
+		#catalog,#number{
+			width:120px;
+		}
+
+	}
+	
+	#result_area{
+		float: left;
+		background: #f4f5f9;
+		width: 500px;
+		height: 500px;
+		margin-left: 20px;
+		position: relative;
+
+		#copy{
+			position: absolute;
+			right: 0;
+			top:0;
+			display:inline-block;
+			padding: 3px 5px;
+			background: #45d14a;
+			color:#FAFAFA;
+			font-size: 12px;
+			cursor: pointer;
+		}
+	}
+}
+
+
+#lForm{
+	width : 120px;
+}
+

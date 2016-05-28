@@ -1,0 +1,98 @@
+
+%r{
+	height:30px;
+	background-color: #FFFFFF;	
+}
+
+
+.cover_layer{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background-color:rgba(0,0,0,0.3);
+	z-index:98;
+}
+
+.mywindow_btn{
+	display: inline-block;
+	width:80px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	text-decoration: none;	
+	margin-right: 20px;
+	cursor: pointer;
+	border-radius: 2px;
+}
+
+.confirm_window{
+	width:400px;
+	z-index:99;
+	margin:0 auto;
+	position:fixed;
+	display: none;
+	top:100px;
+	display:none;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #FFFFFF;
+	box-shadow: 0 0 3px 1px rgba(0,0,0,0.6);
+	
+
+	.confirm_window_head{
+		@extend %r;
+		.confirm_window_title{
+			font-size:16px;
+			margin-left:20px;
+			line-height: 30px;
+			color:#666666;
+		}
+		.mywindow_close_btn{
+			display:inline-block;
+			line-height: 30px;
+			float:right;
+			margin-right:15px;
+			font-size:16px;
+			cursor:pointer;
+			&:hover{
+				color: #333;
+			}
+		}
+	}
+	
+	 .confirm_window_body{
+		background-color:#FFF;
+
+		.confirm_window_msg{
+			height:200px;
+			line-height:200px;
+
+			.confirm_info_msg{
+				display: inline-block;
+				height:32px;
+				line-height: 32px;
+				font-size:20px;
+				position: absolute;
+				margin-top:54px;
+				margin-left:70px;
+			}
+		}
+	}
+
+	.confirm_window_foot{
+		@extend %r;
+		text-align:right;
+
+		.mywindow_btn_sure{
+			background: #C40000;
+			color: #FFF;
+		}
+		.mywindow_btn_cancel{
+			background: #EEE;
+		}
+
+	}
+
+}
