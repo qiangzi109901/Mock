@@ -22,8 +22,6 @@
 
 			<a id="bAdd" class="mbtn sm" >新增</a>
 			<a id="bDelete" class="mbtn sm cdanger" >删除</a>
-			<a id="bBackup" class="mbtn sm" >备份</a>
-			<a id="bRedo" class="mbtn sm" >还原</a>
 		</div>
 	</div>
     <div id="container">
@@ -117,7 +115,7 @@
      <script type="text/text" id="temp_obj">
 {
 	[[each items as item index]]
-	"[[item.key]]" : "[[item.value]]"[[items | comma:index]]
+	"[[item.key]]" : [[item | mvalue]][[items | comma:index]]
 	[[/each]]
 }
     </script>
@@ -126,7 +124,7 @@
 	[[each lists as items index]]
 	{
 		[[each items as item index]]
-		"[[item.key]]" : "[[item.value]]"[[items | comma:index]]
+		"[[item.key]]" : [[item | mvalue]][[items | comma:index]]
 		[[/each]]
 	}[[lists | comma:index]]
 	[[/each]]
@@ -136,27 +134,15 @@
 
     <script type="text/text" id="temp_obj_many_zip">
 [[each lists as items index]]
-{
+curl -XPOST 'http://localhost:9200/test/user' -d '{
 	[[each items as item index]]
-	"[[item.key]]" : "[[item.value]]"[[items | comma:index]]
+	"[[item.key]]" : [[item | mvalue]][[items | comma:index]]
 	[[/each]]
-}[[lists | comma:index]]
+}';
 [[/each]]
     </script>
    
-    <script type="text/text" id="temp_insert_sql">
-	insert into 
-		table(
-			[[each items as item index]]
-				[[item.key]][[items | comma:index]]
-			[[/each]]
-		)
-		value(
-			[[each items as item index]]
-				[[item.value]][[items | comma:index]]
-			[[/each]]
-		);
-    </script>
+   
     <script type="text/text" id="temp_batch_insert">
     [[each lists as items index]]
 	insert into 
@@ -180,8 +166,7 @@
 	</script>
 
 
-	<div id="lForm">
-	
+	<div id="lForm" >
 		<div class="form_line">
 			<label for="">姓名</label>
 			<input type="text" class="minput" name="name">
@@ -192,6 +177,21 @@
 			<input type="text" class="minput" name="email">
 		</div>
 
+
+		<div class="form_line">
+			<label for="">密码</label>
+			<input type="text" class="minput" name="email">
+		</div>
+
+		<div class="form_line">
+			<label for="">确认密码</label>
+			<input type="text" class="minput" name="email">
+		</div>
+
+		<div class="form_btn">
+			<a class="mbtn cdefault">继续使用</a>
+			<a class="mbtn">注册</a>
+		</div>
 	</div>
 
 

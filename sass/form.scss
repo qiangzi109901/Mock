@@ -27,7 +27,10 @@ input:-webkit-autofill:focus{
     background: #f4f5f9;
     transition:0.3s ease-in;
     font-family: Monaco, Menlo,Consolas,"helvetica neue", "Microsoft YaHei", arial, sans-serif;
-
+	
+	&:-webkit-autofill{
+		-webkit-box-shadow: 0 0 0px 50px #f4f5f9 inset;
+	}
     &:focus{
         box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.3);
     }

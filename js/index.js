@@ -14,6 +14,7 @@ require(['datatype','jquery','storage','common','mselect2','mtemplate','datautil
 	var lastSaveTime = common.nowTime();
 
 
+	
 	addId();
 	bindTypeEvent();
 	
@@ -30,14 +31,23 @@ require(['datatype','jquery','storage','common','mselect2','mtemplate','datautil
 				case "String":
 					def = '{"minlen":"10","maxlen":"20"}'
 					break;
+				case "Name":
+					def = 'cn'
+					break;
+				case "Sentence":
+					def = 'cn'
+					break;
 				case "Number":
 					def = '{"min":"0","max":"100"}'
 					break;
 				case "Date":
 					def = "yyyy-MM-dd HH:mm:ss"
 					break;
+				case "Timestamp":
+					def = 'millisecond'
+					break;
 				case "Enum":
-					def = '["val1","val2"]'
+					def = 'val1,val2'
 					break;
 				case "Only" :
 					def = "value";
@@ -92,19 +102,16 @@ require(['datatype','jquery','storage','common','mselect2','mtemplate','datautil
 		{
 			id : 'ZipObject',
 			text : '压缩对象'
-		},
-		{
-			id : 'ZipObjects',
-			text : '多个压缩对象'
 		},{
 			id : 'ZipObjectArray',
 			text : '压缩对象数组'
 		},{
-			id : 'Sql',
-			text : 'Insert语句'
-		},{
 			id : 'ManySql',
-			text : '多个Insert语句'
+			text : 'Sql插入语句'
+		},
+		{
+			id : 'ZipObjects',
+			text : 'ES插入语句'
 		}
 
 	],function(val){
@@ -238,14 +245,11 @@ require(['datatype','jquery','storage','common','mselect2','mtemplate','datautil
     	}
     	else if(catalog == "ZipObjects"){
     		finalHtml = mtemplate.renderAndCompress('temp_obj_many_zip',{"lists":result})
-    		finalHtml = mtemplate.makeNewLine(finalHtml,'},');
+    		// finalHtml = mtemplate.makeNewLine(finalHtml,"';");
     	}
     	else if(catalog == "ZipObjectArray"){
     		finalHtml = mtemplate.renderAndCompress('temp_obj_array',{"lists":result})
     		finalHtml = mtemplate.makeNewLine(finalHtml,'},');
-    	}
-    	else if(catalog == "Sql"){
-    		finalHtml = mtemplate.renderAndCompress('temp_insert_sql',{"items":result,"table":$("#mtable").val()||'table'});
     	}
     	else if(catalog === "ManySql"){
     		finalHtml = mtemplate.renderAndCompress('temp_batch_insert',{"lists":result,"table":$("#mtable").val()||'table'})
@@ -377,6 +381,11 @@ require(['datatype','jquery','storage','common','mselect2','mtemplate','datautil
 
     initSelectList();
 
+    //默认选中
+    if(currentHistory != null){
+    	mselect2.val('#mlist', currentHistory[0]['id'])
+    }
+
     function bindDelete(){
     	$(".mclose").each(function(){
     		$(this).unbind("click");
@@ -391,6 +400,11 @@ require(['datatype','jquery','storage','common','mselect2','mtemplate','datautil
     		$(this).attr('id',common.randomStr(8));
     	});
     }
+
+
+
+    // var w = window.innerWidth - $("#lForm").outerWidth(true);
+    // $("#lForm").css("left",(w/2)+"px").fadeIn();
 
 });
 
